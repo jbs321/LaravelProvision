@@ -1,0 +1,5 @@
+---
+# defaults file for mysql
+wp_mysql_db: laravel
+wp_mysql_user: laravel
+wp_mysql_password: Aa123456

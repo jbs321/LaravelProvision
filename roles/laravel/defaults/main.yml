@@ -1,0 +1,4 @@
+---
+repository_location: /var/www/israelim.ca
+git_repository_link: 'https://github.com/jbs321/Israelim.ca.git'
+default_virtual_host_location = /var/www/israelim.ca/public
