@@ -11,9 +11,20 @@ if ! command -v ansible >/dev/null; then
     sudo apt-get install ansible -y
 fi
 
-
-
 echo "Ansible was installed"
+
+if ! command dos2unix --version >/dev/null; then
+    sudo apt-get install dos2unix
+fi
+
+echo "dos2unix installed"
+
+#in case of error:  $'\r': command not found uncomment this and re-provision
+#sudo dos2unix /vagrant/vagrant_bootstrap.sh
+#echo "file is unix based"
 
 cd /vagrant
 sudo ansible-playbook development.yml
+
+
+
