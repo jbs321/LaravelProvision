@@ -1,16 +1,16 @@
----
-
 - git:
-    repo: { git_repository_link }
-    dest: { repository_location }
+    repo: '{{ git_repository_link }}'
+    dest: '{{ repository_location }}'
+    clone: no
     version: master
+
 
 - name: Update default Apache site
   become: yes
   lineinfile:
     dest=/etc/apache2/sites-enabled/000-default.conf
-    regexp="(.)+DocumentRoot /var/www/html"
-    line="DocumentRoot { default_virtual_host_location }"
+    regexp="\h* DocumentRoot .*"
+    line="        DocumentRoot {{ default_virtual_host_location }}"
   notify:
   - restart apache
 
@@ -28,3 +28,6 @@
   - {'regexp': "DB_NAME=(.)+$", 'line': "DB_DATABASE={ wp_mysql_user }"}
   - {'regexp': "DB_USER=(.)+$", 'line': "DB_DATABASE={ wp_mysql_password }"}
   become: yes
+
+
+    ServerAdmin webmaster@localhost

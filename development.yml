@@ -1,0 +1,13 @@
+---
+- name: laravel
+  hosts: all
+  become: yes
+  gather_facts: False
+
+- hosts: 127.0.0.1
+
+  roles:
+  - server
+  - php
+  - mysql
+  - laravel
