@@ -1,33 +1,49 @@
 - git:
-    repo: '{{ git_repository_link }}'
-    dest: '{{ repository_location }}'
-    clone: no
+    repo: '{{git_repository_link}}'
+    dest: '{{repository_location}}/code'
+    clone: yes
     version: master
 
+- replace:
+    path: /etc/apache2/sites-enabled/000-default.conf
+    regexp: 'DocumentRoot(.)*$'
+    replace: 'DocumentRoot {{ default_virtual_host_location }}'
+    backup: yes
 
-- name: Update default Apache site
-  become: yes
-  lineinfile:
-    dest=/etc/apache2/sites-enabled/000-default.conf
-    regexp="\h* DocumentRoot .*"
-    line="        DocumentRoot {{ default_virtual_host_location }}"
-  notify:
-  - restart apache
+- name: restart apache2
+  service: name=apache2 state=restarted
 
 - name: Copy sample config file
-  command: mv { repository_location }/.env.example { repository_location }/.env creates={ repository_location }/.env
+  command: cp {{repository_location}}/code/.env.example {{repository_location}}/code/.env creates={{repository_location}}/code/.env
   become: yes
 
 - name: Update laravel .env file
   lineinfile:
-    dest={ repository_location }/.env
-    regexp="{{ item.regexp }}"
-    line="{{ item.line }}"
+    dest={{repository_location}}/code/.env
+    regexp="{{item.regexp}}"
+    line="{{item.line}}"
   with_items:
-  - {'regexp': "DB_DATABASE=(.)+$", 'line': "DB_DATABASE={ wp_mysql_db }"}
-  - {'regexp': "DB_NAME=(.)+$", 'line': "DB_DATABASE={ wp_mysql_user }"}
-  - {'regexp': "DB_USER=(.)+$", 'line': "DB_DATABASE={ wp_mysql_password }"}
+  - {'regexp': "DB_DATABASE=(.)+$", 'line': "DB_DATABASE={{wp_mysql_db}}"}
+  - {'regexp': "DB_USERNAME=(.)+$", 'line': "DB_USERNAME={{wp_mysql_user}}"}
+  - {'regexp': "DB_PASSWORD=(.)+$", 'line': "DB_PASSWORD={{wp_mysql_password}}"}
+  - {'regexp': "DB_PASSWORD=(.)+$", 'line': "DB_PASSWORD={{wp_mysql_password}}"}
   become: yes
 
+# Installs package globally
+- name: install composer
+  shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+  args:
+    creates: /usr/local/bin/composer
 
-    ServerAdmin webmaster@localhost
+- composer:
+    command: install
+    working_dir: "{{repository_location}}/code"
+
+#chdir - is the directory for where to run this command from
+- name: generage encryption key
+  command: php artisan key:generate chdir=/var/www/html/code
+  become: yes
+
+- name: migrate laravel
+  command: php artisan migrate --force chdir=/var/www/html/code
+  become: yes

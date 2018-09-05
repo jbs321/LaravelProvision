@@ -6,3 +6,5 @@
   with_items:
   - php7.2-gd
   - php7.2-ssh2
+  - php7.2-mbstring
+  - php7.2-xml

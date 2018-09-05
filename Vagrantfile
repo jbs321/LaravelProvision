@@ -5,12 +5,12 @@ Vagrant.configure("2") do |config|
         laravel.vm.hostname = "laravel"
         laravel.ssh.forward_agent = true
         laravel.ssh.port = 2222
-        config.vm.synced_folder "." , "/vagrant", :create => true, :mount_options => ["dmode=777", "fmode=666"]
+        config.vm.synced_folder "." , "/var/www/html", :create => true
 
         config.vm.provider "virtualbox" do |vb|
           vb.memory = "1024"
         end
     end
 
-      config.vm.provision "shell", inline: "bash /vagrant/vagrant_bootstrap.sh"
+      config.vm.provision "shell", inline: "bash /var/www/html/vagrant_bootstrap.sh"
 end

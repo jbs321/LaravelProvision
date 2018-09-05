@@ -15,5 +15,5 @@ fi
 
 echo "Ansible was installed"
 
-cd /vagrant
+cd /var/www/html
 sudo ansible-playbook development.yml

@@ -1,4 +1,4 @@
 ---
-repository_location: /vagrant/code/
+repository_location: /var/www/html
 git_repository_link: 'https://github.com/laravel/laravel.git'
-default_virtual_host_location: /vagrant/code/public
+default_virtual_host_location: /var/www/html/code/public
