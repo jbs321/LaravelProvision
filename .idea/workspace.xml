@@ -2,27 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ed03f62-77b9-4637-86bd-397864e73b83" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/LaravelProvision.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vagrant/machines/laravel/virtualbox/action_provision" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vagrant/machines/laravel/virtualbox/action_set_name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vagrant/machines/laravel/virtualbox/creator_uid" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vagrant/machines/laravel/virtualbox/id" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vagrant/machines/laravel/virtualbox/index_uuid" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vagrant/machines/laravel/virtualbox/private_key" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vagrant/machines/laravel/virtualbox/synced_folders" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vagrant/machines/laravel/virtualbox/vagrant_cwd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/development.retry" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Vagrantfile" beforeDir="false" afterPath="$PROJECT_DIR$/Vagrantfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/laravel/defaults/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/laravel/defaults/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/laravel/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/laravel/tasks/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roles/php/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/php/tasks/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vagrant_bootstrap.sh" beforeDir="false" afterPath="$PROJECT_DIR$/vagrant_bootstrap.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -77,16 +58,16 @@
           <entry key="Vagrantfile" value="189" />
           <entry key="env" value="18" />
           <entry key="hosts" value="11" />
-          <entry key="sh" value="363" />
-          <entry key="txt" value="6" />
+          <entry key="sh" value="364" />
+          <entry key="txt" value="58" />
           <entry key="yml" value="880" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="18" />
-          <entry key="Bash" value="363" />
-          <entry key="PLAIN_TEXT" value="206" />
+          <entry key="Bash" value="364" />
+          <entry key="PLAIN_TEXT" value="258" />
           <entry key="YAML" value="880" />
         </counts>
       </usages-collector>
@@ -99,8 +80,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/roles/laravel/tasks/main.yml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="741">
-                  <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+                <state relative-caret-position="425">
+                  <caret line="25" column="52" lean-forward="true" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
                 </state>
               </provider>
             </entry>
@@ -267,7 +248,7 @@
       <workItem from="1535569079914" duration="23000" />
       <workItem from="1535582303068" duration="7914000" />
       <workItem from="1535673260223" duration="4843000" />
-      <workItem from="1536104797223" duration="7181000" />
+      <workItem from="1536104797223" duration="7341000" />
     </task>
     <task id="LOCAL-00001" summary="1. add git clone &#10;2. mv .env.example to .env&#10;3. create hosts">
       <created>1535073896602</created>
@@ -283,11 +264,18 @@
       <option name="project" value="LOCAL" />
       <updated>1535677364838</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="finnish setting up laravel app deployment">
+      <created>1536112077901</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1536112077901</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31033000" />
+    <option name="totallyTimeSpent" value="31193000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -345,7 +333,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1. add git clone &#10;2. mv .env.example to .env&#10;3. create hosts" />
     <MESSAGE value="random" />
-    <option name="LAST_COMMIT_MESSAGE" value="random" />
+    <MESSAGE value="finnish setting up laravel app deployment" />
+    <option name="LAST_COMMIT_MESSAGE" value="finnish setting up laravel app deployment" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/index.php" />
@@ -464,8 +453,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/roles/laravel/tasks/main.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="741">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+        <state relative-caret-position="425">
+          <caret line="25" column="52" lean-forward="true" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
         </state>
       </provider>
     </entry>
