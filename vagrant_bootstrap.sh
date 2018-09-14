@@ -23,5 +23,5 @@ echo "dos2unix installed"
 #sudo dos2unix /vagrant/vagrant_bootstrap.sh
 #echo "file is unix based"
 
-cd /var/www/html
+cd /vagrant
 sudo ansible-playbook development.yml

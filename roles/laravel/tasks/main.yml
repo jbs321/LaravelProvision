@@ -1,25 +1,31 @@
 - git:
     repo: '{{git_repository_link}}'
-    dest: '{{repository_location}}/code'
+    dest: '{{repository_location}}'
     clone: yes
     version: master
 
 - replace:
     path: /etc/apache2/sites-enabled/000-default.conf
     regexp: 'DocumentRoot(.)*$'
-    replace: 'DocumentRoot {{ default_virtual_host_location }}'
+    replace: 'DocumentRoot {{ repository_location }}/public'
+    backup: yes
+
+- replace:
+    path:  /etc/apache2/apache2.conf
+    regexp: '<Directory /var/www/(.)*$'
+    replace: '<Directory /vagrant/code>'
     backup: yes
 
 - name: restart apache2
   service: name=apache2 state=restarted
 
 - name: Copy sample config file
-  command: cp {{repository_location}}/code/.env.example {{repository_location}}/code/.env creates={{repository_location}}/code/.env
+  command: cp {{repository_location}}/.env.example {{repository_location}}/.env creates={{repository_location}}/.env
   become: yes
 
 - name: Update laravel .env file
   lineinfile:
-    dest={{repository_location}}/code/.env
+    dest={{repository_location}}/.env
     regexp="{{item.regexp}}"
     line="{{item.line}}"
   with_items:
@@ -29,6 +35,7 @@
   - {'regexp': "DB_PASSWORD=(.)+$", 'line': "DB_PASSWORD={{wp_mysql_password}}"}
   become: yes
 
+
 # Installs package globally
 - name: install composer
   shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -37,13 +44,13 @@
 
 - composer:
     command: install
-    working_dir: "{{repository_location}}/code"
+    working_dir: "{{repository_location}}"
 
 #chdir - is the directory for where to run this command from
 - name: generage encryption key
-  command: php artisan key:generate chdir=/var/www/html/code
+  command: php artisan key:generate chdir={{repository_location}}
   become: yes
 
 - name: migrate laravel
-  command: php artisan migrate --force chdir=/var/www/html/code
+  command: php artisan migrate --force chdir={{repository_location}}
   become: yes
