@@ -1,6 +1,7 @@
 - git:
     repo: '{{git_repository_link}}'
     dest: '{{repository_location}}'
+    force: yes
     clone: yes
     version: master
 
@@ -64,8 +65,13 @@
   apt:
     name: npm
     state: present
-    become: yes
 
-- name: run npm install
-  command: npm install
-  become: yes
+- name: Install npm modules
+  shell: npm install
+  args:
+    chdir: "{{ repository_location }}"
+
+- name: run build
+  shell: npm run build
+  args:
+    chdir: "{{ repository_location }}"
