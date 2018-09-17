@@ -1,1 +1,0 @@
-{"virtualbox":{"/vagrant":{"create":true,"owner":"www-data","group":"www-data","mount_options":["dmode=777","fmode=666","uid=33","gid=33"],"guestpath":"/vagrant","hostpath":"C:/projects/LaravelProvision","disabled":false,"__vagrantfile":true}}}
