@@ -5,17 +5,20 @@
     clone: yes
     version: master
 
-- replace:
-    path: /etc/apache2/sites-enabled/000-default.conf
-    regexp: 'DocumentRoot(.)*$'
-    replace: 'DocumentRoot {{ repository_location }}/public'
+- template:
+    src: templates/000-default.conf.j2
+    dest: /etc/apache2/sites-enabled/000-default.conf
     backup: yes
 
-- replace:
-    path:  /etc/apache2/apache2.conf
-    regexp: '<Directory /var/www/(.)*$'
-    replace: '<Directory /vagrant/code>'
+- template:
+    src: templates/apache2.conf.j2
+    dest: /etc/apache2/apache2.conf
     backup: yes
+
+- name: sudo a2enmod rewrite
+  command: sudo a2enmod rewrite
+  become: yes
+
 
 - name: restart apache2
   service: name=apache2 state=restarted
@@ -43,9 +46,10 @@
   args:
     creates: /usr/local/bin/composer
 
-- composer:
-    command: install
-    working_dir: "{{repository_location}}"
+# Run this command manually
+#- composer:
+#    command: install
+#    working_dir: "{{repository_location}}"
 
 #chdir - is the directory for where to run this command from
 - name: generage encryption key
@@ -66,12 +70,14 @@
     name: npm
     state: present
 
-- name: Install npm modules
-  shell: npm install
-  args:
-    chdir: "{{ repository_location }}"
+# Run this command manually
+#- name: Install npm modules
+#  shell: npm install
+#  args:
+#    chdir: "{{ repository_location }}"
 
-- name: run build
-  shell: npm run build
-  args:
-    chdir: "{{ repository_location }}"
+# Run this command manually
+#- name: run build
+#  shell: npm run build
+#  args:
+#    chdir: "{{ repository_location }}"
