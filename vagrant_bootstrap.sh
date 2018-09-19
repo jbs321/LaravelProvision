@@ -24,4 +24,4 @@ echo "dos2unix installed"
 #echo "file is unix based"
 
 cd /vagrant
-sudo ansible-playbook development.yml
+sudo ansible-playbook development.yml --vault-password-file=.vault_pass

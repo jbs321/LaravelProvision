@@ -23,21 +23,25 @@
 - name: restart apache2
   service: name=apache2 state=restarted
 
-- name: Copy sample config file
-  command: cp {{repository_location}}/.env.example {{repository_location}}/.env creates={{repository_location}}/.env
-  become: yes
+- template:
+    src: templates/encrypted/.env.j2
+    dest: /vagrant/code/.env
 
-- name: Update laravel .env file
-  lineinfile:
-    dest={{repository_location}}/.env
-    regexp="{{item.regexp}}"
-    line="{{item.line}}"
-  with_items:
-  - {'regexp': "DB_DATABASE=(.)+$", 'line': "DB_DATABASE={{wp_mysql_db}}"}
-  - {'regexp': "DB_USERNAME=(.)+$", 'line': "DB_USERNAME={{wp_mysql_user}}"}
-  - {'regexp': "DB_PASSWORD=(.)+$", 'line': "DB_PASSWORD={{wp_mysql_password}}"}
-  - {'regexp': "DB_PASSWORD=(.)+$", 'line': "DB_PASSWORD={{wp_mysql_password}}"}
-  become: yes
+#- name: Copy sample config file
+#  command: cp {{repository_location}}/.env.example {{repository_location}}/.env creates={{repository_location}}/.env
+#  become: yes
+
+#- name: Update laravel .env file
+#  lineinfile:
+#    dest={{repository_location}}/.env
+#    regexp="{{item.regexp}}"
+#    line="{{item.line}}"
+#  with_items:
+#  - {'regexp': "DB_DATABASE=(.)+$", 'line': "DB_DATABASE={{wp_mysql_db}}"}
+#  - {'regexp': "DB_USERNAME=(.)+$", 'line': "DB_USERNAME={{wp_mysql_user}}"}
+#  - {'regexp': "DB_PASSWORD=(.)+$", 'line': "DB_PASSWORD={{wp_mysql_password}}"}
+#  - {'regexp': "DB_PASSWORD=(.)+$", 'line': "DB_PASSWORD={{wp_mysql_password}}"}
+#  become: yes
 
 
 # Installs package globally
@@ -58,7 +62,13 @@
 
 - name: migrate laravel
   command: php artisan migrate --force chdir={{repository_location}}
-  become: yes
+
+- template:
+    src: templates/seeders/AuthClientsTableSeeder.php.j2
+    dest: /vagrant/code/database/seeds/AuthClientsTableSeeder.php
+
+- name: migrate seed
+  command: php artisan db:seed chdir={{repository_location}}
 
 - name: Install nodeJS
   apt:
