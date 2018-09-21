@@ -1,10 +1,25 @@
 ---
-# tasks file for php
-- name: Install php extensions
-  apt: name={{ item }} state=present
-  become: yes
-  with_items:
-  - php7.2-gd
-  - php7.2-ssh2
-  - php7.2-mbstring
-  - php7.2-xml
+- name: Add PHP 7.2 PPA
+  apt_repository:
+    repo: "ppa:ondrej/php"
+    update_cache: yes
+
+- name: Install PHP 7.2
+  apt:
+    name: "{{ item }}"
+    state: present
+    force: yes
+  with_items: "{{ php_extensions }}"
+
+- name: Start php7.2-fpm service
+  service:
+    name: php7.2-fpm
+    state: started
+    enabled: true
+
+- name: PHP configuration file
+  template:
+    src: php.ini.j2
+    dest: /etc/php/7.2/fpm/php.ini
+  notify: reload php-fpm
+  become: true

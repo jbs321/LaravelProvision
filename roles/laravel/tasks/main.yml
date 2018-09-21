@@ -67,8 +67,8 @@
     src: templates/seeders/AuthClientsTableSeeder.php.j2
     dest: /vagrant/code/database/seeds/AuthClientsTableSeeder.php
 
-- name: migrate seed
-  command: php artisan db:seed chdir={{repository_location}}
+#- name: migrate seed
+#  command: php artisan db:seed chdir={{repository_location}}
 
 - name: Install nodeJS
   apt:
