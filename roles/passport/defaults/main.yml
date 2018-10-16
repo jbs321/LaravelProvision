@@ -1,0 +1,9 @@
+---
+passport_name: Web Client
+passport_secret: FkI9pTCbjIcs4sCpymlHfuBXAKF14O3UGpf0CRAr
+passport_password_client_id: 100
+
+passport_revoked: 0
+passport_redirect: "{{ domain }}/redirect"
+passport_password_client: 1
+passport_personal_access_client: 0

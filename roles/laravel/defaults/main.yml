@@ -1,3 +1,52 @@
 ---
-git_repository_link: 'https://github.com/jbs321/Israelim.ca.git'
-repository_location: /vagrant/code
+git_project_repository: 'https://github.com/jbs321/Israelim.ca.git'
+
+#Laravel Keys
+laravel_app_name: Laravel
+laravel_app_env: local
+laravel_app_key: base64:yqYEwXcZgD3Qrb04XTcSEcD8As2fzltAJbrZF+QSbxE=
+laravel_app_debug: true
+laravel_app_url: "{{domain}}"
+laravel_log_channel: stack
+
+#DB Keys
+laravel_db_connection: mysql
+laravel_db_host: 127.0.0.1
+laravel_db_port: 3306
+laravel_db_database: laravel
+laravel_db_username: laravel
+laravel_db_password: Aa123456
+
+#Broadcast keys
+laravel_broadcast_driver: log
+laravel_cache_driver: file
+laravel_session_driver: file
+laravel_session_lifetime: 120
+laravel_queue_driver: sync
+
+#Redis Keys
+laravel_redis_host: 127.0.0.1
+laravel_redis_password: null
+laravel_redis_port: 6379
+
+#Mail Keys
+laravel_mail_driver: smtp
+laravel_mail_host: smtp.mailtrap.io
+laravel_mail_port: 2525
+laravel_mail_username: null
+laravel_mail_password: null
+laravel_mail_encryption: null
+
+#Pusher Keys
+laravel_pusher_app_id:
+laravel_pusher_app_key:
+laravel_pusher_app_secret:
+laravel_pusher_app_cluster: mt1
+laravel_mix_pusher_app_key: "${PUSHER_APP_KEY}"
+laravel_mix_pusher_app_cluster: "${PUSHER_APP_CLUSTER}"
+
+#Google Keys
+laravel_google_street_view_key: AIzaSyDG5btrxQfiJvOXQ-dVIrUiVjCD0JCPekk
+laravel_google_static_maps_key: AIzaSyBj1sbJftTIe6X_tCB6eO3gmfLEBD4Mujw
+laravel_google_places_key: AIzaSyAIs9Qs_LOKXIpkQ9DH1exix3Cd5v2ZKlw
+laravel_google_maps_secret: AIzaSyBTnsRmNmll3qfo0v6eAvQLkmuJk3KpZdw

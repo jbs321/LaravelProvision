@@ -6,10 +6,9 @@
 
 - name: Install PHP 7.2
   apt:
-    name: "{{ item }}"
+    name: "{{ php_extensions }}"
     state: present
     force: yes
-  with_items: "{{ php_extensions }}"
 
 - name: Start php7.2-fpm service
   service:

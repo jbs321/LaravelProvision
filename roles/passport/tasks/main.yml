@@ -1,17 +1,24 @@
 ---
-
 - template:
-    src: templates/encrypted/.env.j2
-    dest: /vagrant/code/.env
-
-#chdir - is the directory for where to run this command from
-- name: generage encryption key
-  command: php artisan key:generate chdir={{repository_location}}
-  become: yes
-
-- name: migrate laravel
-  command: php artisan migrate --force chdir={{repository_location}}
-
-- template:
-    src: templates/seeders/AuthClientsTableSeeder.php.j2
+    src: templates/AuthClientsTableSeeder.php.j2
     dest: /vagrant/code/database/seeds/AuthClientsTableSeeder.php
+    force: yes
+
+#Add or Replace passport token secret
+- lineinfile:
+    path: /vagrant/code/.env
+    regexp: '^REACT_AUTH_CONFIG_CLIENT_ID=(.)*$'
+    line: 'REACT_AUTH_CONFIG_CLIENT_ID={{ passport_password_client_id }}'
+    insertbefore: " sdfd"
+
+#Add or Replace passport token secret
+- lineinfile:
+    path: /vagrant/code/.env
+    regexp: '^REACT_AUTH_CONFIG_CLIENT_ID=(.)*$'
+    line: 'REACT_AUTH_CONFIG_CLIENT_ID={{ passport_password_client_id }}'
+
+#Add or Replace passport token secret
+- lineinfile:
+      path: /vagrant/code/.env
+      regexp: '^REACT_AUTH_CONFIG_CLIENT_SECRET=(.)*$'
+      line: 'REACT_AUTH_CONFIG_CLIENT_SECRET={{ passport_secret }}'

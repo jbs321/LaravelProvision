@@ -1,5 +1,5 @@
 - git:
-    repo: '{{git_repository_link}}'
+    repo: '{{git_project_repository}}'
     dest: '{{repository_location}}'
     force: yes
     clone: yes
@@ -16,7 +16,7 @@
     backup: yes
 
 - name: sudo a2enmod rewrite
-  command: sudo a2enmod rewrite
+  command: a2enmod rewrite
   become: yes
 
 
