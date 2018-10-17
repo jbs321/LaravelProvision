@@ -2,4 +2,5 @@
 - name: Include service environment variables
   include_vars: "{{ item }}"
   with_first_found:
-  - "../../vars/local.yml"
+  - "../../vars/dev.yml"
+  - "../../vars/dev-local.yml"

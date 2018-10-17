@@ -1,4 +1,8 @@
 ---
+
+- debug:
+    msg: "Xdebug is set to be {{xdebug_remote_enable}}"
+
 - block:
   - name: Install Xdebug
     apt:
