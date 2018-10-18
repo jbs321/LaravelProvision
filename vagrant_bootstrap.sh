@@ -23,5 +23,5 @@ echo "dos2unix installed"
 #sudo dos2unix /vagrant/vagrant_bootstrap.sh
 #echo "file is unix based"
 
-cd /vagrant
+cd /ops
 sudo ansible-playbook development.yml --vault-password-file=.vault_pass  --extra-vars "env=dev"

@@ -1,4 +1,4 @@
 ---
 domain: http://israelim.ca
-repository_location: /vagrant/code
+repository_location: /ops/code
 ntp_timezone: America/Los_Angeles

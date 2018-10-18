@@ -1,0 +1,17 @@
+# change repository folder permissions
+- file:
+    path: /ops/code
+    mode: 0755
+    recurse: yes
+
+# change storage folder permissions
+- file:
+    path: /ops/code/storage
+    mode: 0777
+    recurse: yes
+
+# change cahce folder permissions
+- file:
+    path: /ops/bootstrap/cache
+    mode: 0755
+    recurse: yes

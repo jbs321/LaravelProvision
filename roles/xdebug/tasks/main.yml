@@ -15,7 +15,11 @@
     template:
       src: xdebug.ini.j2
       dest: /etc/php/7.2/mods-available/xdebug.ini
-    notify: reload php7.2-fpm
+
+  - name: Reload php7.2-fpm service
+    service:
+      name: php7.2-fpm
+      state: reloaded
 
   - name: Ensure 20-xdebug.ini is present
     file:

@@ -1,0 +1,16 @@
+---
+# Set Up a user
+# About hashing passwords - https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
+- name: Add the user 'laravel' to admin group
+  user:
+    name: "{{ default_user_name }}"
+    comment: Admin User - "{{ default_user_name }}"
+    password: "{{ default_user_password | password_hash('sha512') }}"
+    state: present
+    groups: "{{ default_user_groups }}"
+    append: true
+    shell: /bin/bash
+
+#configure Firewall
+- include_tasks: ufw.yml
+- include_tasks: ssh.yml

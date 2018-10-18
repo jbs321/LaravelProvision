@@ -1,0 +1,4 @@
+---
+default_user_name: laravel
+default_user_password: Aa123456
+default_user_groups: sudo

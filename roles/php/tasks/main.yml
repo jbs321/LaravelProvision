@@ -20,5 +20,9 @@
   template:
     src: php.ini.j2
     dest: /etc/php/7.2/fpm/php.ini
-  notify: reload php7.2-fpm
   become: true
+
+- name: Reload php7.2-fpm service
+  service:
+    name: php7.2-fpm
+    state: reloaded

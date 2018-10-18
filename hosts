@@ -1,0 +1,5 @@
+[development]
+dev.israelim.ca ansible_host=192.168.33.11 env=dev
+
+[production]
+israelim.ca ansible_host=167.99.167.24 env=prd

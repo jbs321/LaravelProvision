@@ -1,3 +1,4 @@
+---
 - git:
     repo: '{{git_project_repository}}'
     dest: '{{repository_location}}'
@@ -25,24 +26,7 @@
 
 - template:
     src: templates/encrypted/.env.j2
-    dest: /vagrant/code/.env
-
-#- name: Copy sample config file
-#  command: cp {{repository_location}}/.env.example {{repository_location}}/.env creates={{repository_location}}/.env
-#  become: yes
-
-#- name: Update laravel .env file
-#  lineinfile:
-#    dest={{repository_location}}/.env
-#    regexp="{{item.regexp}}"
-#    line="{{item.line}}"
-#  with_items:
-#  - {'regexp': "DB_DATABASE=(.)+$", 'line': "DB_DATABASE={{wp_mysql_db}}"}
-#  - {'regexp': "DB_USERNAME=(.)+$", 'line': "DB_USERNAME={{wp_mysql_user}}"}
-#  - {'regexp': "DB_PASSWORD=(.)+$", 'line': "DB_PASSWORD={{wp_mysql_password}}"}
-#  - {'regexp': "DB_PASSWORD=(.)+$", 'line': "DB_PASSWORD={{wp_mysql_password}}"}
-#  become: yes
-
+    dest: "{{ repository_location }}/.env"
 
 # Installs package globally
 - name: install composer
@@ -51,10 +35,11 @@
     creates: /usr/local/bin/composer
 
 # Run this command manually
-#- composer:
-#    command: install
-#    working_dir: "{{repository_location}}"
+- composer:
+    command: install
+    working_dir: "{{repository_location}}"
 
+#TODO:: replace this with copy paste instead of laravel manually generating this
 #chdir - is the directory for where to run this command from
 - name: generage encryption key
   command: php artisan key:generate chdir={{repository_location}}
@@ -65,7 +50,7 @@
 
 - template:
     src: templates/seeders/AuthClientsTableSeeder.php.j2
-    dest: /vagrant/code/database/seeds/AuthClientsTableSeeder.php
+    dest: "{{ repository_location }}/database/seeds/AuthClientsTableSeeder.php"
 
 #- name: migrate seed
 #  command: php artisan db:seed chdir={{repository_location}}
@@ -80,14 +65,10 @@
     name: npm
     state: present
 
-# Run this command manually
-#- name: Install npm modules
-#  shell: npm install
-#  args:
-#    chdir: "{{ repository_location }}"
+- include_tasks: permissions.yml
 
-# Run this command manually
-#- name: run build
+#- name: run npm build
 #  shell: npm run build
 #  args:
 #    chdir: "{{ repository_location }}"
+

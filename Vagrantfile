@@ -1,12 +1,12 @@
 ANSIBLE_PATH = '.' # absolute path to Ansible directory on host machine
-ANSIBLE_PATH_ON_VM = '/vagrant' # absolute path to Ansible directory on virtual machine
+ANSIBLE_PATH_ON_VM = '/ops' # absolute path to Ansible directory on virtual machine
 
 # IP Address for the host only network, change it to anything you like
 # but please keep it within the IPv4 private network range
 IP_ADDRESS = "192.168.33.11"
 
 # The project name is base for directories, hostname, etc.
-HOSTNAME = "israelim.ca"
+HOSTNAME = "dev.israelim.ca"
 
 Vagrant.configure("2") do |config|
     config.vm.box = "bento/ubuntu-18.04"

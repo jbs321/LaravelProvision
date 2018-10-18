@@ -1,24 +1,24 @@
 ---
 - template:
     src: templates/AuthClientsTableSeeder.php.j2
-    dest: /vagrant/code/database/seeds/AuthClientsTableSeeder.php
+    dest: "{{ repository_location }}/database/seeds/AuthClientsTableSeeder.php"
     force: yes
 
 #Add or Replace passport token secret
 - lineinfile:
-    path: /vagrant/code/.env
+    path: "{{ repository_location }}/.env"
     regexp: '^REACT_AUTH_CONFIG_CLIENT_ID=(.)*$'
     line: 'REACT_AUTH_CONFIG_CLIENT_ID={{ passport_password_client_id }}'
     insertbefore: " sdfd"
 
 #Add or Replace passport token secret
 - lineinfile:
-    path: /vagrant/code/.env
+    path: "{{ repository_location }}/.env"
     regexp: '^REACT_AUTH_CONFIG_CLIENT_ID=(.)*$'
     line: 'REACT_AUTH_CONFIG_CLIENT_ID={{ passport_password_client_id }}'
 
 #Add or Replace passport token secret
 - lineinfile:
-      path: /vagrant/code/.env
+      path: "{{ repository_location }}/.env"
       regexp: '^REACT_AUTH_CONFIG_CLIENT_SECRET=(.)*$'
       line: 'REACT_AUTH_CONFIG_CLIENT_SECRET={{ passport_secret }}'
